@@ -48,18 +48,25 @@ table {
 
 body{
     font-family: 'Montserrat', sans-serif;
+	color: rgb(43, 42, 42);
 }
 
 header{
 	margin: 50px 0;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 }
 h1{
 	font-size: 5em;
+	font-weight: bold;
 	text-align: center;
 }
-
-main{
-	display: flex;
-	justify-content: space-around;
-	flex-wrap: wrap;
+.recipeAdd{
+	color: rgb(43, 42, 42);
+	transition: .3s;
+	display: inline-block;
+}
+.recipeAdd:hover{
+	transform: scale(1.2);
 }

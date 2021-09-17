@@ -1,0 +1,35 @@
+.details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.details_title{
+    font-size: 2.5em;
+    background-color: #555555;
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 30px 0;
+}
+.details_details{
+    display: flex;
+    justify-content: space-between;
+}
+.details_desc{
+    margin: 50px 0;
+}
+.details_img{
+    min-width: 40%;
+    width: 600px;
+    min-height: 600px;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+}
+.details_infos{
+    width: 55%;
+}
+h3{
+    font-size: 1.5em;
+    font-weight: bold;
+}

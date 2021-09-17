@@ -1,45 +1,32 @@
-import { BrowserRouter, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom'
 import './App.css'
-import axios from 'axios'
-import { useState, useEffect } from 'react'
 
-import Add from './views/add'
-import Detail from './views/detail'
-import Modify from './views/modify'
-import Recipe from './Recipe/Recipe'
+import Add from './Add/Add'
+import Homepage from './Homepage/Homepage'
+import Details from './Details/Details'
 
 function App() {
 
-  const [recettes, setRecettes] = useState(null)
-
-  useEffect(() => {
-    fetch("http://localhost:9000/api/recipes")
-      .then(res => res.json())
-      .then(recipes => {
-        setRecettes(recipes)
-      })
-  }, [])
-
   return (
-    <BrowserRouter>
+    <Router>
       <div className="App">
 
         <header>
-          <h1>Geek Recipes</h1>
-          
-          <Link to="/add">Ajouter une recette</Link>
+          <div style={{visibility: "hidden"}}>Ajouter une recette</div>
+          <Link style={{textDecoration: "none"}} to="/"><h1>Geek Recipes</h1></Link>
+          <Link to="/Add" className="recipeAdd">Ajouter une recette</Link>
         </header>
 
         <main>
-          {recettes && recettes.map( (recette) => {
-            return(
-              <Recipe key={recette.id} recette={recette} />
-            )
-          })}
+          <Switch>
+            <Route exact path="/" component={Homepage}></Route>
+            <Route path="/recipes/:id" component={Details}></Route>
+            <Route exact path="/Add" component={Add}></Route>
+          </Switch>
         </main>
 
       </div>
-    </BrowserRouter>
+    </Router>
   )
 }
 
