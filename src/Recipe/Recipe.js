@@ -1,35 +1,36 @@
 import { Link } from 'react-router-dom'
 import './Recipe.css'
 
-import Modify from '../Modify/Modify'
 import Delete from '../Delete/Delete'
 
-const Recipe = (recette) => {
+const Recipe = ({recette, recetteListe, setRecettes}) => {
 
-    const id = recette.recette.id
+    const id = recette.id
 
     return (
-        <>
-            <Link to={{pathname:'/recipes/'+id}} className="recipe">
+        <div className="recipe">
+            <Link to={{pathname:'/recipes/'+id}} className="recipe_detail_link">
                     <div className="recipe_details">
-                        <img src={recette.recette.photo}></img>
+                        <img src={recette.photo}></img>
                         <div>
-                        <p className="recipe_details_title"><span>{recette.recette.titre}</span></p>
-                            <p className="recipe_details_level">Niveau: <span>{recette.recette.niveau}</span></p>
-                            <p className="recipe_details_people">Pour: <span>{recette.recette.personnes}</span> personne{recette.recette.personnes > 1 ? "s" : null}</p>
-                            <p className="recipe_details_time">Temps de préparation: <span>{recette.recette.tempsPreparation}</span>min</p>
+                        <p className="recipe_details_title"><span>{recette.titre}</span></p>
+                            <p className="recipe_details_level">Niveau: <span>{recette.niveau}</span></p>
+                            <p className="recipe_details_people">Pour: <span>{recette.personnes}</span> personne{recette.personnes > 1 ? "s" : null}</p>
+                            <p className="recipe_details_time">Temps de préparation: <span>{recette.tempsPreparation > 60 ? 
+                                Math.floor(recette.tempsPreparation / 60) + "h" + recette.tempsPreparation % 60 : recette.tempsPreparation}
+                                </span>min</p>
                         </div>
                     </div>
                     <div className="recipe_infos">
-                        <p className="recipe_details_time">{recette.recette.description}</p>
-                        <div className="buttons">
-                            <Delete id={id}></Delete>
-                            {/* <Link to="/modify">Modifier</Link> */}
-                        </div>
+                        <p className="recipe_details_time">{recette.description}</p>
                     </div>
             </Link>
-        </>
-    );
-};
+            <div className="buttons">
+                <Delete i={id} recetteListe={recetteListe} setRecettes={setRecettes} ></Delete>
+                <Link to="/modify">Modifier</Link>
+            </div>
+        </div>
+    )
+}
 
-export default Recipe;
+export default Recipe

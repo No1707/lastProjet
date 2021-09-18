@@ -27,7 +27,8 @@ const Details = () => {
                             <ul style={{listStyle: "square"}}>
                                 <li>Niveau: {recette.niveau}</li>
                                 <li>Parts: {recette.personnes}</li>
-                                <li>Temps de préparation: {recette.tempsPreparation}</li>
+                                <li>Temps de préparation: {recette.tempsPreparation > 60 ?
+                                Math.floor(recette.tempsPreparation / 60) + "h" + recette.tempsPreparation % 60 : recette.tempsPreparation}</li>
                             </ul>
                             <h3>Ingrédients:</h3>
                             <ul className="details_ingredients">

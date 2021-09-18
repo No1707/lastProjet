@@ -1,11 +1,14 @@
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom'
 import './App.css'
+import { useState } from 'react'
 
 import Add from './Add/Add'
 import Homepage from './Homepage/Homepage'
 import Details from './Details/Details'
 
 function App() {
+
+  const [showPopup, setShowPopup] = useState(false)
 
   return (
     <Router>

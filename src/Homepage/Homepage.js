@@ -18,7 +18,7 @@ const Homepage = () => {
     return (
         <div className="recipeList">
             {recettes && recettes.map((recette) => {
-                return <Recipe key={recette.id} recette={recette} />
+                return <Recipe key={recette.id} recette={recette} recetteListe={recettes} setRecettes={setRecettes} />
             })}
         </div>
     )
