@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './Details.css'
+import Delete from '../Delete/Delete'
 
 const Details = () => {
 
@@ -43,6 +44,8 @@ const Details = () => {
                                 })}
                             </ul>
                         </div>
+                        {/* <Delete i={id} setRecettes={setRecettes} ></Delete> */}
+                        {/* <Link to={{ pathname: '/recipe/modify/' + id }}>Modifier</Link> */}
                     </div>
                 </div>
             }

@@ -77,6 +77,10 @@ input[type=submit]:hover{
     background-color: #414141;
     cursor: pointer;
 }
+.ingredients{
+    display: flex;
+    justify-content: space-between;
+}
 .ingredients input{
     width: 35%;
 }

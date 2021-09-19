@@ -3,13 +3,13 @@ import './Recipe.css'
 
 import Delete from '../Delete/Delete'
 
-const Recipe = ({recette, recetteListe, setRecettes}) => {
+const Recipe = ({recette, setRecettes}) => {
 
     const id = recette.id
 
     return (
         <div className="recipe">
-            <Link to={{pathname:'/recipes/'+id}} className="recipe_detail_link">
+            <Link to={{pathname:'/recipe/'+id}} className="recipe_detail_link">
                     <div className="recipe_details">
                         <img src={recette.photo}></img>
                         <div>
@@ -26,8 +26,8 @@ const Recipe = ({recette, recetteListe, setRecettes}) => {
                     </div>
             </Link>
             <div className="buttons">
-                <Delete i={id} recetteListe={recetteListe} setRecettes={setRecettes} ></Delete>
-                <Link to="/modify">Modifier</Link>
+                <Delete i={id} setRecettes={setRecettes} ></Delete>
+                <Link to={{pathname:'/recipe/modify/'+id}}>Modifier</Link>
             </div>
         </div>
     )
