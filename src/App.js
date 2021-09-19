@@ -9,8 +9,6 @@ import Modify from './Modify/Modify'
 
 function App() {
 
-  const [showPopup, setShowPopup] = useState(false)
-
   return (
     <Router>
       <div className="App">

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { setIn } from "formik";
 import { useState } from "react"
 import './Add.css'
 
@@ -44,6 +43,7 @@ const Add = () => {
                 return { ...e, [name]: theVal }
             })
         }
+
     }
 
     const onIngredientChange = (val) => {
@@ -52,16 +52,19 @@ const Add = () => {
         const i = val.target.dataset.index
 
         switch(name){
+            
             case "quantity":
                 const newQuant = inputs.ingredients
                 newQuant[i].quantity = theVal
                 setInputs({ ...inputs, [inputs.ingredients]: newQuant })
                 break
+
             case "unit":
                 const newUnit = inputs.ingredients
                 newUnit[i].unit = theVal
                 setInputs({...inputs, [inputs.ingredients]: newUnit})
                 break
+
             case "product":
                 const newProd = inputs.ingredients
                 newProd[i].product = theVal
@@ -100,7 +103,6 @@ const Add = () => {
             case "ingredient":
                 const ingredients = inputs.ingredients
                 ingredients.splice(i, 1)
-                console.log(inputs.ingredients, ingredients)
                 setInputs({ ...inputs, [inputs.ingredients]: ingredients, })
                 break
         }
@@ -113,15 +115,20 @@ const Add = () => {
         const finalIngredients = []
 
         inputs.ingredients.map((ingr) => {
+
             const quantUnit = ingr.quantity+ingr.unit
+
             const prod = ingr.product
+
             const res = [quantUnit, prod]
+
             finalIngredients.push(res)
         })
 
+        setInputs({ ...inputs, ingredients: finalIngredients})
+
         console.log(finalIngredients)
 
-        setInputs({ ...inputs, [inputs.ingredients]: finalIngredients})
 
         // if (inputs.photo) {
         //     const photoURL = inputs.photo.substr(0, 8)
@@ -173,7 +180,7 @@ const Add = () => {
                 <label>
                     <span>Etapes:</span>
                     <div className="steps">
-                        {inputs.etapes && inputs.etapes.map( (val, i) => {
+                        {inputs.etapes && inputs.etapes.map( (i) => {
                             return(
                                 <div className="step" key={i}>
                                     <textarea placeholder="Etape à suivre" className="inputStep" id="etapes" cols="50" rows="2" required value={inputs.etapes[i]} onChange={onInputChange} data-index={i} />
@@ -187,7 +194,7 @@ const Add = () => {
                 <label className="ingredients">
                     <span>Ingredients:</span>
                 <div style={{ width: "100%" }}>
-                    {inputs.ingredients && inputs.ingredients.map((val, i) =>
+                    {inputs.ingredients && inputs.ingredients.map((i) =>
                             (
                                 <div key={i}>
                                     <input id="quantity" data-index={i} type="number" onChange={onIngredientChange} value={inputs.ingredients[i].quantity} />

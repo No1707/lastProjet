@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import './Details.css'
 import Delete from '../Delete/Delete'
 
@@ -16,6 +16,8 @@ const Details = () => {
             })
     }, [])
 
+    let steps = 0
+
     return(
         <>
             {recette && 
@@ -24,28 +26,31 @@ const Details = () => {
                     <div className="details_details">
                         <div style={{backgroundImage: "url("+`${recette.photo}`+")"}} className="details_img"></div>
                         <div className="details_infos">
-                            <p className="details_desc">C'est quoi "{recette.titre}" ?? En gros, c'est {recette.description}</p>
+                            <p className="details_desc">C'est quoi "{recette.titre}" ? Grossièrement, voilà: <br/><br/> {recette.description}</p>
                             <ul style={{listStyle: "square"}}>
                                 <li>Niveau: {recette.niveau}</li>
                                 <li>Parts: {recette.personnes}</li>
                                 <li>Temps de préparation: {recette.tempsPreparation > 60 ?
                                 Math.floor(recette.tempsPreparation / 60) + "h" + recette.tempsPreparation % 60 : recette.tempsPreparation}</li>
                             </ul>
-                            <h3>Ingrédients:</h3>
                             <ul className="details_ingredients">
+                                <h3>Ingrédients:</h3>
                                 {recette.ingredients.map((i) => {
                                     return <li key={i[1]}>{i[0]} {i[1]}</li>
                                 })}
                             </ul>
-                            <h3>Etapes:</h3>
                             <ul className="details_steps">
+                                <h3>Etapes:</h3>
                                 {recette.etapes.map((e) => {
-                                    return <li key={e}>{e}</li>
+                                    steps++
+                                    return <li key={e}>{steps}. {e}</li>
                                 })}
                             </ul>
+                            <div className="details_button">
+                                <Delete i={id} setRecettes={setRecette} ></Delete>
+                                <Link to={{ pathname: '/recipe/modify/' + id }}>Modifier</Link>
+                            </div>
                         </div>
-                        {/* <Delete i={id} setRecettes={setRecettes} ></Delete> */}
-                        {/* <Link to={{ pathname: '/recipe/modify/' + id }}>Modifier</Link> */}
                     </div>
                 </div>
             }

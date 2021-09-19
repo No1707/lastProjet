@@ -34,3 +34,29 @@ h3{
     font-size: 1.5em;
     font-weight: bold;
 }
+.details_ingredients, .details_steps{
+    margin: 20px auto;
+}
+.details_ingredients li, .details_steps li{
+    margin: 10px auto;
+}
+
+.details_button{
+    margin: 40px auto;
+}
+.details_button>*{
+    background-color: #555555;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition: .3s;
+    margin: 0 10px;
+    line-height: normal;
+}
+.details_button>*:hover{
+    background-color: #414141;
+    cursor: pointer;
+}
